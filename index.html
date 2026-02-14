@@ -986,8 +986,8 @@
             <div class="dashboard-card" onclick="showSection('allmatches')">
                 <div class="card-icon"><i class="fas fa-gamepad"></i></div>
                 <div class="card-title">Total Matches</div>
-                <div class="card-value">0</div>
-                <div class="card-desc">No matches scheduled yet</div>
+                <div class="card-value">40</div>
+                <div class="card-desc">Group: 20 • Super-6: 16 • Finale: 4</div>
             </div>
         </div>
 
@@ -1111,19 +1111,7 @@
             <button class="filter-btn" onclick="filterUpcoming('finale')">Finale</button>
         </div>
 
-        <div id="upcomingMatches">
-            <div class="match-card">
-                <div class="match-top">
-                    <span><i class="fas fa-info-circle"></i> INFORMATION</span>
-                </div>
-                <div class="teams">
-                    No Matches Scheduled
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-clock"></i> Check back later for match schedule
-                </div>
-            </div>
-        </div>
+        <div id="upcomingMatches"></div>
     </div>
 
     <!-- ALL MATCHES with Player Selector -->
@@ -1144,19 +1132,7 @@
             <button class="filter-btn" onclick="filterAllMatches('finale')">Finale</button>
         </div>
 
-        <div id="allMatchesList">
-            <div class="match-card">
-                <div class="match-top">
-                    <span><i class="fas fa-info-circle"></i> INFORMATION</span>
-                </div>
-                <div class="teams">
-                    No Matches Scheduled
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-clock"></i> Check back later for match schedule
-                </div>
-            </div>
-        </div>
+        <div id="allMatchesList"></div>
     </div>
 
     <!-- REMAINING MATCHES -->
@@ -1177,54 +1153,139 @@
             <button class="filter-btn" onclick="filterRemaining('finale')">Finale</button>
         </div>
 
-        <div id="remainingMatches">
-            <div class="match-card">
-                <div class="match-top">
-                    <span><i class="fas fa-info-circle"></i> INFORMATION</span>
-                </div>
-                <div class="teams">
-                    No Matches Scheduled
-                </div>
-                <div class="match-time">
-                    <i class="fas fa-clock"></i> Check back later for match schedule
-                </div>
-            </div>
-        </div>
+        <div id="remainingMatches"></div>
     </div>
 
     <!-- SUPER-6 -->
     <div id="super6" class="section">
         <h2>⭐ SUPER-6</h2>
-        <div class="table-wrapper">
-            <table id="super6Table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Player</th>
-                        <th>Group</th>
-                        <th>Played</th>
-                        <th>Won</th>
-                        <th>Draw</th>
-                        <th>Lose</th>
-                        <th>CS</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Empty - will be populated after group stage -->
-                </tbody>
-            </table>
-        </div>
-        <div class="match-card" style="margin-top: 20px;">
+        <div class="match-card">
             <div class="match-top">
-                <span><i class="fas fa-info-circle"></i> INFORMATION</span>
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 1</span>
+                <span>2 MAR 2026</span>
             </div>
-            <div class="teams">
-                Super-6 Not Started
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 4:00-5:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 2</span>
+                <span>2 MAR 2026</span>
             </div>
-            <div class="match-time">
-                <i class="fas fa-clock"></i> Will be updated after group stage
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 5:00-6:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 3</span>
+                <span>3 MAR 2026</span>
             </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 4:00-5:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 4</span>
+                <span>3 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 5:00-6:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 5</span>
+                <span>4 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 4:00-5:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 6</span>
+                <span>4 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 5:00-6:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 7</span>
+                <span>5 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 4:00-5:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 8</span>
+                <span>5 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 5:00-6:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 9</span>
+                <span>6 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 4:00-5:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 10</span>
+                <span>6 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 5:00-6:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 11</span>
+                <span>7 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 4:00-5:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 12</span>
+                <span>7 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 5:00-6:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 13</span>
+                <span>8 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 4:00-5:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 14</span>
+                <span>8 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 5:00-6:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 15</span>
+                <span>9 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 4:00-5:00 PM</div>
+        </div>
+        <div class="match-card">
+            <div class="match-top">
+                <span><i class="fas fa-star"></i> SUPER-6 MATCH 16</span>
+                <span>9 MAR 2026</span>
+            </div>
+            <div class="teams">TBD vs TBD</div>
+            <div class="match-time"><i class="fas fa-clock"></i> 5:00-6:00 PM</div>
         </div>
     </div>
 
@@ -1237,7 +1298,7 @@
                 <div class="bracket-card">
                     <h4>QUALIFIER-1</h4>
                     <div class="bracket-teams">TBD vs TBD</div>
-                    <div class="vs-badge">VS</div>
+                    <div class="vs-badge">10 MAR 2026</div>
                     <div class="winner-badge">Winner → Final</div>
                     <div class="winner-badge">Loser → Qualifier-2</div>
                 </div>
@@ -1245,7 +1306,7 @@
                 <div class="bracket-card">
                     <h4>ELIMINATOR</h4>
                     <div class="bracket-teams">TBD vs TBD</div>
-                    <div class="vs-badge">VS</div>
+                    <div class="vs-badge">10 MAR 2026</div>
                     <div class="winner-badge">Winner → Qualifier-2</div>
                 </div>
             </div>
@@ -1254,27 +1315,16 @@
                 <div class="bracket-card">
                     <h4>QUALIFIER-2</h4>
                     <div class="bracket-teams">TBD vs TBD</div>
-                    <div class="vs-badge">VS</div>
+                    <div class="vs-badge">11 MAR 2026</div>
                     <div class="winner-badge">Winner → Final</div>
                 </div>
                 
                 <div class="bracket-card">
                     <h4>🏆 FINAL</h4>
                     <div class="bracket-teams">TBD vs TBD</div>
-                    <div class="vs-badge">VS</div>
+                    <div class="vs-badge">12 MAR 2026</div>
                     <div class="winner-badge">Tournament Winner</div>
                 </div>
-            </div>
-        </div>
-        <div class="match-card" style="margin-top: 20px;">
-            <div class="match-top">
-                <span><i class="fas fa-info-circle"></i> INFORMATION</span>
-            </div>
-            <div class="teams">
-                Finale Stage Not Started
-            </div>
-            <div class="match-time">
-                <i class="fas fa-clock"></i> Will be updated after Super-6
             </div>
         </div>
     </div>
@@ -1381,8 +1431,54 @@ const allPlayers = [
     { name: "Varis", group: "B", played: 0, won: 0, draw: 0, cs: 0, kills: 0 }
 ];
 
-// Empty matches array (no matches scheduled yet)
-const matches = [];
+// Matches Data with Group Stage, Super-6 and Finale Matches
+const matches = [
+    // GROUP STAGE - 20 matches (20 Feb - 1 Mar)
+    { id: 1, type: "group", stage: "Group Stage Match 1", team1: "Darshit", team2: "Jeel", status: "upcoming", time: "20 Feb 2026, 4:00 PM" },
+    { id: 2, type: "group", stage: "Group Stage Match 2", team1: "Het", team2: "Tarun", status: "upcoming", time: "20 Feb 2026, 5:00 PM" },
+    { id: 3, type: "group", stage: "Group Stage Match 3", team1: "Meet", team2: "Abhishek", status: "upcoming", time: "21 Feb 2026, 4:00 PM" },
+    { id: 4, type: "group", stage: "Group Stage Match 4", team1: "Varis", team2: "Abhi", status: "upcoming", time: "21 Feb 2026, 5:00 PM" },
+    { id: 5, type: "group", stage: "Group Stage Match 5", team1: "Jeel", team2: "Rudra", status: "upcoming", time: "22 Feb 2026, 4:00 PM" },
+    { id: 6, type: "group", stage: "Group Stage Match 6", team1: "Tarun", team2: "Rahul", status: "upcoming", time: "22 Feb 2026, 5:00 PM" },
+    { id: 7, type: "group", stage: "Group Stage Match 7", team1: "Abhishek", team2: "Darshit", status: "upcoming", time: "23 Feb 2026, 4:00 PM" },
+    { id: 8, type: "group", stage: "Group Stage Match 8", team1: "Varis", team2: "Het", status: "upcoming", time: "23 Feb 2026, 5:00 PM" },
+    { id: 9, type: "group", stage: "Group Stage Match 9", team1: "Jeel", team2: "Meet", status: "upcoming", time: "24 Feb 2026, 4:00 PM" },
+    { id: 10, type: "group", stage: "Group Stage Match 10", team1: "Tarun", team2: "Abhi", status: "upcoming", time: "24 Feb 2026, 5:00 PM" },
+    { id: 11, type: "group", stage: "Group Stage Match 11", team1: "Rudra", team2: "Abhishek", status: "upcoming", time: "25 Feb 2026, 4:00 PM" },
+    { id: 12, type: "group", stage: "Group Stage Match 12", team1: "Rahul", team2: "Het", status: "upcoming", time: "25 Feb 2026, 5:00 PM" },
+    { id: 13, type: "group", stage: "Group Stage Match 13", team1: "Abhishek", team2: "Jeel", status: "upcoming", time: "26 Feb 2026, 4:00 PM" },
+    { id: 14, type: "group", stage: "Group Stage Match 14", team1: "Tarun", team2: "Varis", status: "upcoming", time: "26 Feb 2026, 5:00 PM" },
+    { id: 15, type: "group", stage: "Group Stage Match 15", team1: "Meet", team2: "Rudra", status: "upcoming", time: "27 Feb 2026, 4:00 PM" },
+    { id: 16, type: "group", stage: "Group Stage Match 16", team1: "Abhi", team2: "Het", status: "upcoming", time: "27 Feb 2026, 5:00 PM" },
+    { id: 17, type: "group", stage: "Group Stage Match 17", team1: "Darshit", team2: "Meet", status: "upcoming", time: "28 Feb 2026, 4:00 PM" },
+    { id: 18, type: "group", stage: "Group Stage Match 18", team1: "Varis", team2: "Rahul", status: "upcoming", time: "28 Feb 2026, 5:00 PM" },
+    { id: 19, type: "group", stage: "Group Stage Match 19", team1: "Darshit", team2: "Rudra", status: "upcoming", time: "1 Mar 2026, 4:00 PM" },
+    { id: 20, type: "group", stage: "Group Stage Match 20", team1: "Abhi", team2: "Rahul", status: "upcoming", time: "1 Mar 2026, 5:00 PM" },
+    
+    // SUPER-6 - 16 matches (2 Mar - 9 Mar)
+    { id: 21, type: "super6", stage: "Super-6 Match 1", team1: "TBD", team2: "TBD", status: "upcoming", time: "2 Mar 2026, 4:00 PM" },
+    { id: 22, type: "super6", stage: "Super-6 Match 2", team1: "TBD", team2: "TBD", status: "upcoming", time: "2 Mar 2026, 5:00 PM" },
+    { id: 23, type: "super6", stage: "Super-6 Match 3", team1: "TBD", team2: "TBD", status: "upcoming", time: "3 Mar 2026, 4:00 PM" },
+    { id: 24, type: "super6", stage: "Super-6 Match 4", team1: "TBD", team2: "TBD", status: "upcoming", time: "3 Mar 2026, 5:00 PM" },
+    { id: 25, type: "super6", stage: "Super-6 Match 5", team1: "TBD", team2: "TBD", status: "upcoming", time: "4 Mar 2026, 4:00 PM" },
+    { id: 26, type: "super6", stage: "Super-6 Match 6", team1: "TBD", team2: "TBD", status: "upcoming", time: "4 Mar 2026, 5:00 PM" },
+    { id: 27, type: "super6", stage: "Super-6 Match 7", team1: "TBD", team2: "TBD", status: "upcoming", time: "5 Mar 2026, 4:00 PM" },
+    { id: 28, type: "super6", stage: "Super-6 Match 8", team1: "TBD", team2: "TBD", status: "upcoming", time: "5 Mar 2026, 5:00 PM" },
+    { id: 29, type: "super6", stage: "Super-6 Match 9", team1: "TBD", team2: "TBD", status: "upcoming", time: "6 Mar 2026, 4:00 PM" },
+    { id: 30, type: "super6", stage: "Super-6 Match 10", team1: "TBD", team2: "TBD", status: "upcoming", time: "6 Mar 2026, 5:00 PM" },
+    { id: 31, type: "super6", stage: "Super-6 Match 11", team1: "TBD", team2: "TBD", status: "upcoming", time: "7 Mar 2026, 4:00 PM" },
+    { id: 32, type: "super6", stage: "Super-6 Match 12", team1: "TBD", team2: "TBD", status: "upcoming", time: "7 Mar 2026, 5:00 PM" },
+    { id: 33, type: "super6", stage: "Super-6 Match 13", team1: "TBD", team2: "TBD", status: "upcoming", time: "8 Mar 2026, 4:00 PM" },
+    { id: 34, type: "super6", stage: "Super-6 Match 14", team1: "TBD", team2: "TBD", status: "upcoming", time: "8 Mar 2026, 5:00 PM" },
+    { id: 35, type: "super6", stage: "Super-6 Match 15", team1: "TBD", team2: "TBD", status: "upcoming", time: "9 Mar 2026, 4:00 PM" },
+    { id: 36, type: "super6", stage: "Super-6 Match 16", team1: "TBD", team2: "TBD", status: "upcoming", time: "9 Mar 2026, 5:00 PM" },
+    
+    // FINALE - 4 matches (10 Mar - 12 Mar)
+    { id: 37, type: "finale", stage: "Qualifier-1", team1: "TBD", team2: "TBD", status: "upcoming", time: "10 Mar 2026, 4:00 PM" },
+    { id: 38, type: "finale", stage: "Eliminator", team1: "TBD", team2: "TBD", status: "upcoming", time: "10 Mar 2026, 5:00 PM" },
+    { id: 39, type: "finale", stage: "Qualifier-2", team1: "TBD", team2: "TBD", status: "upcoming", time: "11 Mar 2026, 4:00 PM" },
+    { id: 40, type: "finale", stage: "Final", team1: "TBD", team2: "TBD", status: "upcoming", time: "12 Mar 2026, 4:00 PM" }
+];
 
 // Function to calculate player stats
 function calculatePlayerStats(player) {
@@ -1453,13 +1549,6 @@ function renderGroupTable(groupId, tableId) {
         
         tbody.appendChild(row);
     });
-}
-
-// Function to render Super-6 table (empty initially)
-function renderSuper6() {
-    const tbody = document.querySelector("#super6Table tbody");
-    tbody.innerHTML = "";
-    // Keep it empty initially
 }
 
 // Function to render Player's Info
@@ -1543,7 +1632,9 @@ function renderMatches(containerId, filterType = 'all', playerFilter = 'all', st
     // Filter by player
     if (playerFilter !== 'all') {
         filteredMatches = filteredMatches.filter(m => 
-            m.team1 === playerFilter || m.team2 === playerFilter
+            (m.team1 === playerFilter || m.team2 === playerFilter) && 
+            m.team1 !== "TBD" && 
+            m.team2 !== "TBD"
         );
     }
     
@@ -1573,12 +1664,6 @@ function renderMatches(containerId, filterType = 'all', playerFilter = 'all', st
             '<i class="fas fa-check-circle" style="color: #4caf50;"></i> FINISHED' : 
             '<i class="far fa-clock" style="color: #ff4d4d;"></i> UPCOMING';
         
-        const scoreHtml = match.score ? 
-            `<div class="match-score">${match.score}</div>` : '';
-        
-        const winnerHtml = match.winner ? 
-            `<div class="match-time"><i class="fas fa-crown" style="color: #ffd700;"></i> Winner: ${match.winner}</div>` : '';
-        
         card.innerHTML = `
             <div class="match-top">
                 <span><i class="fas fa-tag"></i> ${match.stage}</span>
@@ -1587,11 +1672,9 @@ function renderMatches(containerId, filterType = 'all', playerFilter = 'all', st
             <div class="teams">
                 ${match.team1} VS ${match.team2}
             </div>
-            ${scoreHtml}
             <div class="match-time">
                 <i class="fas fa-calendar-alt"></i> ${match.time}
             </div>
-            ${winnerHtml}
         `;
         container.appendChild(card);
     });
@@ -1645,45 +1728,15 @@ function showMatchSummary(matchId) {
     
     const modalContent = document.getElementById('modalContent');
     
-    if (match.status === 'upcoming') {
-        modalContent.innerHTML = `
-            <h3 style="color: #ff4d4d; text-align: center;">${match.stage}</h3>
-            <div class="modal-teams">${match.team1} VS ${match.team2}</div>
-            <div style="text-align: center; margin: 30px 0;">
-                <i class="far fa-clock" style="font-size: 50px; color: #ff4d4d;"></i>
-                <p style="font-size: 20px; margin-top: 15px;">Match yet to be played</p>
-                <p style="color: #8f9bb3;">Scheduled: ${match.time}</p>
-            </div>
-        `;
-    } else {
-        let roundsHtml = '';
-        match.rounds.forEach(round => {
-            roundsHtml += `
-                <div class="round-item">
-                    <span class="round-number">Round ${round.round}</span>
-                    <span class="round-winner"><i class="fas fa-crown"></i> ${round.winner}</span>
-                </div>
-            `;
-        });
-        
-        modalContent.innerHTML = `
-            <h3 style="color: #ff4d4d; text-align: center;">${match.stage}</h3>
-            <div class="modal-teams">${match.team1} VS ${match.team2}</div>
-            <div class="modal-score">${match.score}</div>
-            
-            <h4 style="margin-top: 20px;">Round by Round</h4>
-            <div class="rounds-container">
-                ${roundsHtml}
-            </div>
-            
-            <div class="modal-winner">
-                <i class="fas fa-trophy"></i> Winner: ${match.winner}
-            </div>
-            <div style="text-align: center; color: #8f9bb3; margin-top: 15px;">
-                <i class="fas fa-calendar-alt"></i> ${match.time}
-            </div>
-        `;
-    }
+    modalContent.innerHTML = `
+        <h3 style="color: #ff4d4d; text-align: center;">${match.stage}</h3>
+        <div class="modal-teams">${match.team1} VS ${match.team2}</div>
+        <div style="text-align: center; margin: 30px 0;">
+            <i class="far fa-clock" style="font-size: 50px; color: #ff4d4d;"></i>
+            <p style="font-size: 20px; margin-top: 15px;">Match yet to be played</p>
+            <p style="color: #8f9bb3;">Scheduled: ${match.time}</p>
+        </div>
+    `;
     
     document.getElementById('matchModal').classList.add('active');
 }
@@ -1751,7 +1804,6 @@ function updateProgress() {
 function initialize() {
     renderGroupTable("A", "groupATable");
     renderGroupTable("B", "groupBTable");
-    renderSuper6();
     renderPlayersInfo();
     renderKillsLeaderboard();
     populatePlayerSelectors();
