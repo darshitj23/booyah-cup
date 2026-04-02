@@ -95,6 +95,10 @@
         .giveup-btn { background: #8b2c1d; color: white; }
         .turn-info { background: #00000060; padding: 10px; border-radius: 40px; text-align: center; margin: 15px 0 10px; }
         .next-btn { background: #f97316; border: none; padding: 12px; border-radius: 44px; font-weight: bold; width: 100%; cursor: pointer; margin-top: 15px; }
+        .reset-auction-btn {
+            background: #8b2c1d; border: none; padding: 12px 20px; border-radius: 44px;
+            font-weight: bold; color: white; cursor: pointer; margin-top: 20px; width: 100%;
+        }
         .players-ranking-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
             gap: 25px; margin-top: 20px;
@@ -126,15 +130,15 @@
         .unvote-btn { background: #8b2c1d; border: none; padding: 8px 16px; border-radius: 40px; font-weight: bold; margin-top: 10px; cursor: pointer; width: 100%; }
         .voted-text { background: #1e7e34; padding: 8px; border-radius: 30px; margin-top: 12px; }
         .admin-badge { font-size: 0.7rem; background: #f97316; display: inline-block; padding: 2px 8px; border-radius: 20px; margin-left: 8px; vertical-align: middle; }
-        .match-auction-card, .dashboard-card {
+        .match-auction-card {
             background: linear-gradient(145deg,#14242e,#0a1922); border-radius: 38px;
             padding: 25px 20px; margin-bottom: 35px; border: 1px solid #f9731650; text-align: center;
         }
-        .start-auction-btn, .completed-tag {
-            background: linear-gradient(95deg,#f97316,#e05a1a); border: none; padding: 12px 28px;
+        .start-auction-btn {
+            background: linear-gradient(95deg,#f97316,#e05a1a);
+            border: none; padding: 12px 28px;
             font-weight: bold; border-radius: 60px; color: white; cursor: pointer; margin-top: 15px;
         }
-        .completed-tag { background: #2c5a3e; cursor: default; opacity: 0.8; }
         .teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 28px; margin-top: 25px; }
         .team-card { background: #0b202b; border-radius: 32px; padding: 20px; border-left: 8px solid #f97316; cursor: pointer; transition: 0.2s; }
         .team-card:hover { transform: translateY(-5px); background: #102f3e; }
@@ -209,8 +213,8 @@
     let captainVotes = JSON.parse(localStorage.getItem("cricket_captain_votes")) || { match1: {}, match2: {} };
     let purchasedTeams = JSON.parse(localStorage.getItem("cricket_teams_purchased")) || { match1: { teamA: [], teamB: [], budgetA: 9, budgetB: 9 }, match2: { teamA: [], teamB: [], budgetA: 9, budgetB: 9 } };
     
-    // ⚡ IMPORTANT: Auction state is NEVER saved to localStorage (no resume issue)
-    let auctionState = { match1: null, match2: null };
+    // ⚡ NO AUCTION STATE IN LOCALSTORAGE - FRESH EVERY TIME
+    let auctionActive = null;  // { matchId, teamA, teamB, playersQueue, currentIndex, currentBid, currentTurn, lastBidTeam, lastBidAmount }
     
     const PLAYERS_LIST = ["DARSHIT","KRISHIL","DEV","AKSHIT","NISHIT","SAUMIL","VEDANT","BHARGAV","KUNJ","MANYA","PRADIP"];
 
@@ -373,15 +377,22 @@
         }
     };
 
-    // ---------- AUCTION (NO LOCALSTORAGE - FRESH EVERY TIME) ----------
+    // ---------- AUCTION (NO RESUME EVER) ----------
     function renderAuctionMenu() {
         let matches = [
-            { id:"match1", name:"MATCH - 1", teamA:"THUNDER", teamB:"WARRIORS", status: auctionState.match1?.completed ? "completed" : (auctionState.match1?.started ? "ongoing" : "pending") },
-            { id:"match2", name:"MATCH - 2", teamA:"TIGERS", teamB:"LIONS", status: auctionState.match2?.completed ? "completed" : (auctionState.match2?.started ? "ongoing" : "pending") }
+            { id:"match1", name:"MATCH - 1", teamA:"THUNDER", teamB:"WARRIORS" },
+            { id:"match2", name:"MATCH - 2", teamA:"TIGERS", teamB:"LIONS" }
         ];
         let container = document.getElementById("auctionMatchesContainer");
-        container.innerHTML = matches.map(m => `<div class="match-auction-card"><h3>🏏 ${m.name}</h3><div>⚡ ${m.teamA}  vs  ${m.teamB}</div>
-            ${m.status === "completed" ? `<div class="completed-tag">✅ COMPLETED</div>` : (m.status === "ongoing" ? `<button class="start-auction-btn" onclick="resumeAuction('${m.id}')">▶️ RESUME AUCTION</button>` : `<button class="start-auction-btn" onclick="startAuction('${m.id}', '${m.teamA}', '${m.teamB}')">🚀 START AUCTION</button>`)}</div>`).join("");
+        container.innerHTML = matches.map(m => `
+            <div class="match-auction-card">
+                <h3>🏏 ${m.name}</h3>
+                <div>⚡ ${m.teamA}  vs  ${m.teamB}</div>
+                <button class="start-auction-btn" onclick="startAuction('${m.id}', '${m.teamA}', '${m.teamB}')">🚀 START NEW AUCTION</button>
+            </div>
+        `).join("");
+        // Reset all auction data button
+        container.innerHTML += `<div class="match-auction-card"><button class="reset-auction-btn" onclick="resetAllAuctionData()">🗑️ RESET ALL AUCTION DATA (Clear Teams)</button></div>`;
     }
 
     function getPlayerOrderByTier(rankData) {
@@ -396,40 +407,52 @@
         return order.filter(x=>x);
     }
 
+    function resetAllAuctionData() {
+        if(confirm("⚠️ આ બધી ઓક્શન અને ટીમોનો ડેટા ડિલીટ કરી દેશે. શું તમને ખાતરી છે?")) {
+            purchasedTeams = { match1: { teamA: [], teamB: [], budgetA: 9, budgetB: 9 }, match2: { teamA: [], teamB: [], budgetA: 9, budgetB: 9 } };
+            localStorage.setItem("cricket_teams_purchased", JSON.stringify(purchasedTeams));
+            auctionActive = null;
+            renderAuctionMenu();
+            renderTeamsInfo();
+            alert("✅ બધો ઓક્શન ડેટા રીસેટ થઈ ગયો!");
+        }
+    }
+
     function startAuction(matchId, teamA, teamB) {
         let rankData = computeRankingData();
         let queue = getPlayerOrderByTier(rankData);
         if(!queue.length) return;
+        // Reset purchased teams for this match
         purchasedTeams[matchId] = { teamA: [], teamB: [], budgetA: 9, budgetB: 9 };
         localStorage.setItem("cricket_teams_purchased", JSON.stringify(purchasedTeams));
-        auctionState[matchId] = {
-            started: true, completed: false, teamA, teamB, currentIndex: 0,
+        auctionActive = {
+            matchId, teamA, teamB,
             playersQueue: queue.map(p=>p.name),
-            currentBid: null, currentTurn: "A", lastBidTeam: null, lastBidAmount: null
+            currentIndex: 0,
+            currentBid: null,
+            currentTurn: "A",
+            lastBidTeam: null,
+            lastBidAmount: null
         };
-        showAuctionScreen(matchId);
+        showAuctionScreen();
     }
 
-    function resumeAuction(matchId) { 
-        let state = auctionState[matchId];
-        if(!state || state.completed) {
-            alert("Auction not in progress. Please start a new auction.");
+    function showAuctionScreen() {
+        if(!auctionActive) { renderAuctionMenu(); showSection('auction'); return; }
+        let state = auctionActive;
+        if(state.currentIndex >= state.playersQueue.length) {
+            alert("✅ Auction completed for " + state.matchId + "!");
+            auctionActive = null;
             renderAuctionMenu();
             showSection('auction');
             return;
         }
-        showAuctionScreen(matchId); 
-    }
-
-    function showAuctionScreen(matchId) {
-        let state = auctionState[matchId];
-        if(!state || state.completed) { alert("Auction over."); renderAuctionMenu(); showSection('auction'); return; }
         let playerName = state.playersQueue[state.currentIndex];
         let rankInfo = computeRankingData().find(p => p.name === playerName);
         let tier = rankInfo.tier;
         let basePrice = tier === "HIGH" ? 2 : (tier === "MEDIUM" ? 1 : 0.5);
         let currentBidVal = state.currentBid !== null ? state.currentBid : basePrice;
-        let teamData = purchasedTeams[matchId];
+        let teamData = purchasedTeams[state.matchId];
         let html = `
             <div class="auction-main">
                 <div class="teams-budget-row">
@@ -449,8 +472,8 @@
                             <div>💵 Current Bid: ${currentBidVal.toFixed(2)} Cr</div>
                         </div>
                         <div class="bid-actions">
-                            <button class="raise-btn" onclick="raiseBid('${matchId}')">⚡ RAISE BID</button>
-                            <button class="giveup-btn" onclick="giveUpAuction('${matchId}')">❌ GIVE UP</button>
+                            <button class="raise-btn" onclick="raiseBid()">⚡ RAISE BID</button>
+                            <button class="giveup-btn" onclick="giveUpAuction()">❌ GIVE UP</button>
                         </div>
                         <div class="turn-info">🎤 Now Turn of: ${state.currentTurn === "A" ? state.teamA : state.teamB}</div>
                     </div>
@@ -459,12 +482,11 @@
         `;
         document.getElementById("auctionMatchesContainer").innerHTML = html;
         showSection('auction');
-        window.currentAuctionMatch = matchId;
     }
 
-    window.raiseBid = function(matchId) {
-        let state = auctionState[matchId];
-        if(!state) return;
+    window.raiseBid = function() {
+        if(!auctionActive) return;
+        let state = auctionActive;
         let playerName = state.playersQueue[state.currentIndex];
         let tier = computeRankingData().find(p=>p.name===playerName).tier;
         let base = tier === "HIGH" ? 2 : (tier === "MEDIUM" ? 1 : 0.5);
@@ -475,19 +497,19 @@
         state.lastBidTeam = state.currentTurn;
         state.lastBidAmount = newBid;
         state.currentTurn = state.currentTurn === "A" ? "B" : "A";
-        showAuctionScreen(matchId);
+        showAuctionScreen();
     };
 
-    window.giveUpAuction = function(matchId) {
-        let state = auctionState[matchId];
-        if(!state) return;
+    window.giveUpAuction = function() {
+        if(!auctionActive) return;
+        let state = auctionActive;
         let playerName = state.playersQueue[state.currentIndex];
         let winnerTeam = state.lastBidTeam;
         let price = state.lastBidAmount !== null ? state.lastBidAmount : (() => {
             let t = computeRankingData().find(p=>p.name===playerName).tier;
             return t === "HIGH" ? 2 : (t === "MEDIUM" ? 1 : 0.5);
         })();
-        let teamData = purchasedTeams[matchId];
+        let teamData = purchasedTeams[state.matchId];
         if(winnerTeam) {
             let winnerName = winnerTeam === "A" ? state.teamA : state.teamB;
             let winnerBudget = winnerTeam === "A" ? teamData.budgetA : teamData.budgetB;
@@ -513,19 +535,14 @@
         state.lastBidAmount = null;
         state.currentTurn = "A";
         if(state.currentIndex >= state.playersQueue.length) {
-            state.completed = true;
+            alert("✅ Auction completed for " + state.matchId + "!");
+            auctionActive = null;
             renderAuctionMenu();
             showSection('auction');
-            alert("✅ Auction completed!");
+            renderTeamsInfo();
             return;
         }
-        let nextBtnHtml = `<div style="margin-top: 20px;"><button class="next-btn" onclick="loadNextPlayer('${matchId}')">➡️ NEXT PLAYER</button></div>`;
-        let container = document.getElementById("auctionMatchesContainer");
-        container.insertAdjacentHTML("beforeend", nextBtnHtml);
-    };
-
-    window.loadNextPlayer = function(matchId) {
-        showAuctionScreen(matchId);
+        showAuctionScreen();
     };
 
     function renderTeamsInfo() {
